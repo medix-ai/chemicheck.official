@@ -1,4 +1,4 @@
-/* ChemiCheck Landing · script.js  v3 */
+/* ChemiCheck Landing · script.js  v4 */
 
 /* ── Nav scroll shadow ── */
 const snav = document.getElementById('snav');
@@ -8,13 +8,10 @@ if (snav) {
   }, { passive: true });
 }
 
-/* ── Scroll fade-in (IntersectionObserver) ── */
+/* ── Scroll fade-in ── */
 const fadeObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      fadeObs.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('in'); fadeObs.unobserve(e.target); }
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -16px 0px' });
 document.querySelectorAll('.fu').forEach(el => fadeObs.observe(el));
@@ -46,10 +43,7 @@ function runCounter(el, target, dur = 1400) {
 }
 const cntObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      runCounter(e.target, +e.target.dataset.target);
-      cntObs.unobserve(e.target);
-    }
+    if (e.isIntersecting) { runCounter(e.target, +e.target.dataset.target); cntObs.unobserve(e.target); }
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.stat-num[data-target]').forEach(el => cntObs.observe(el));
@@ -57,7 +51,6 @@ document.querySelectorAll('.stat-num[data-target]').forEach(el => cntObs.observe
 /* ── Gallery ── */
 const rail = document.getElementById('galleryRail');
 const dots = document.querySelectorAll('.gd');
-
 function syncDots() {
   if (!rail || !dots.length) return;
   const slides = rail.querySelectorAll('.g-slide');
@@ -74,110 +67,79 @@ if (rail) {
       if (slides[i]) rail.scrollTo({ left: slides[i].offsetLeft - 20, behavior: 'smooth' });
     });
   });
-  /* Desktop drag with momentum */
   let drag = false, sx = 0, sl = 0, vx = 0, lastX = 0, lastT = 0;
   rail.addEventListener('mousedown', e => {
     drag = true; sx = e.pageX - rail.offsetLeft; sl = rail.scrollLeft;
     lastX = e.pageX; lastT = Date.now(); vx = 0;
-    rail.style.cursor = 'grabbing';
-    rail.style.scrollSnapType = 'none';
+    rail.style.cursor = 'grabbing'; rail.style.scrollSnapType = 'none';
   });
   rail.addEventListener('mouseleave', () => stopDrag());
   rail.addEventListener('mouseup',    () => stopDrag());
   rail.addEventListener('mousemove',  e => {
     if (!drag) return;
     e.preventDefault();
-    const now = Date.now();
-    const dt = now - lastT;
+    const now = Date.now(); const dt = now - lastT;
     if (dt > 0) vx = (e.pageX - lastX) / dt;
     lastX = e.pageX; lastT = now;
     rail.scrollLeft = sl - (e.pageX - rail.offsetLeft - sx) * 1.2;
   });
   function stopDrag() {
     if (!drag) return;
-    drag = false;
-    rail.style.cursor = 'grab';
-    rail.style.scrollSnapType = '';
-    /* momentum fling */
+    drag = false; rail.style.cursor = 'grab'; rail.style.scrollSnapType = '';
     let v = -vx * 8;
-    const step = () => {
-      if (Math.abs(v) < 0.5) return;
-      rail.scrollLeft += v;
-      v *= 0.9;
-      requestAnimationFrame(step);
-    };
+    const step = () => { if (Math.abs(v) < .5) return; rail.scrollLeft += v; v *= .9; requestAnimationFrame(step); };
     requestAnimationFrame(step);
   }
 }
 
-/* ── Button ripple effect ── */
+/* ── Button ripple ── */
 function addRipple(el) {
   el.addEventListener('click', function(e) {
     const rect = el.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height) * 2;
     const x = e.clientX - rect.left - size / 2;
     const y = e.clientY - rect.top  - size / 2;
-    const ripple = document.createElement('span');
-    ripple.style.cssText = `
-      position:absolute; border-radius:50%; pointer-events:none;
-      width:${size}px; height:${size}px;
-      left:${x}px; top:${y}px;
-      background:rgba(255,255,255,.18);
-      transform:scale(0); animation:rippleAnim .5s ease-out forwards;
-    `;
-    el.style.position = 'relative';
-    el.style.overflow = 'hidden';
-    el.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 520);
+    const r = document.createElement('span');
+    r.style.cssText = `position:absolute;border-radius:50%;pointer-events:none;width:${size}px;height:${size}px;left:${x}px;top:${y}px;background:rgba(255,255,255,.18);transform:scale(0);animation:rippleAnim .5s ease-out forwards;`;
+    el.style.position = 'relative'; el.style.overflow = 'hidden';
+    el.appendChild(r); setTimeout(() => r.remove(), 520);
   });
 }
-const style = document.createElement('style');
-style.textContent = '@keyframes rippleAnim{to{transform:scale(1);opacity:0;}}';
-document.head.appendChild(style);
+const rs = document.createElement('style');
+rs.textContent = '@keyframes rippleAnim{to{transform:scale(1);opacity:0;}}';
+document.head.appendChild(rs);
 document.querySelectorAll('.btn, .tf-btn, .snav-btn').forEach(addRipple);
 
-/* ── TestFlight button handlers ── */
-function handleTFClick(e) {
-  if (e.currentTarget.getAttribute('href') === '#' || !e.currentTarget.href || e.currentTarget.tagName === 'BUTTON') {
+/* ── TestFlight buttons ── */
+function handleTF(e) {
+  if (e.currentTarget.getAttribute('href') === '#' || e.currentTarget.tagName === 'BUTTON') {
     e.preventDefault();
-    /* TODO: Replace '#' with actual TestFlight URL */
     alert('TestFlight 링크를 준비 중입니다.\n곧 업데이트됩니다! 🙏');
   }
 }
 const tfBtn  = document.getElementById('tfBtn');
 const tfBtn2 = document.getElementById('tfBtn2');
-if (tfBtn)  tfBtn.addEventListener('click', handleTFClick);
-if (tfBtn2) tfBtn2.addEventListener('click', handleTFClick);
+if (tfBtn)  tfBtn.addEventListener('click', handleTF);
+if (tfBtn2) tfBtn2.addEventListener('click', handleTF);
 
-/* ── Video play placeholder ── */
+/* ── Video placeholder ── */
 const videoPlay = document.getElementById('videoPlay');
-if (videoPlay) {
-  videoPlay.addEventListener('click', () => {
-    alert('시연 영상을 준비 중입니다.\n곧 업데이트됩니다! 🎬');
-  });
-}
+if (videoPlay) videoPlay.addEventListener('click', () => alert('시연 영상을 준비 중입니다. 🎬'));
 
-/* ── Beta form submit ── */
+/* ── Beta form ── */
 const betaForm = document.getElementById('betaForm');
 const betaOk   = document.getElementById('betaOk');
 if (betaForm) {
   betaForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = document.getElementById('betaEmail').value;
-    /*
-      TODO: 폼 제출 API 연결
-      fetch('https://formspree.io/f/YOUR_ID', {
-        method: 'POST', body: JSON.stringify({ email }),
-        headers: { 'Content-Type': 'application/json' }
-      });
-    */
     betaForm.style.display = 'none';
-    if (betaOk) { betaOk.style.display = 'block'; }
+    if (betaOk) betaOk.style.display = 'block';
     console.log('Beta signup:', email);
   });
 }
 
-/* ── Smooth scroll (with nav offset) ── */
+/* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
@@ -190,22 +152,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ── Step card: subtle cursor follow highlight ── */
+/* ── Step card cursor highlight ── */
 document.querySelectorAll('.step-row').forEach(card => {
   card.addEventListener('mousemove', e => {
-    const rect  = card.getBoundingClientRect();
+    const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
     const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
     card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(12,184,122,.04) 0%, transparent 70%), var(--surface)`;
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.background = '';
-  });
-});
-
-/* ── Trust rows: left bar reveal on hover (CSS handles it, JS adds nothing extra) ── */
-
-/* ── Stat cards: counter animation class ── */
-document.querySelectorAll('.stat-card').forEach((card, i) => {
-  card.style.transitionDelay = `${i * 0.06}s`;
+  card.addEventListener('mouseleave', () => { card.style.background = ''; });
 });
