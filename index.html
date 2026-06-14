@@ -1,619 +1,870 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-  <title>케미체크 — 우리 집 화학제품, AI가 검사해드립니다</title>
-  <meta name="description" content="라벨 사진 한 장으로 화학제품 성분을 분석하고 가족 건강 위험을 미리 알려드립니다."/>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"/>
+  <title>케미체크 ChemiCheck — 사진 한 장으로, 우리집 화학물질 안전을</title>
+  <meta name="description" content="식약처·환경부·산업부 공공데이터 기반 생활화학제품 안전 AI Agent. 7,189종 화학물질을 온디바이스에서 10ms 이내 분석합니다."/>
+  <meta property="og:title" content="케미체크 ChemiCheck — 사진 한 장으로, 우리집 화학물질 안전을"/>
+  <meta property="og:description" content="3종 국가중점데이터 기반. 7,189종 화학물질 탑재. 가족 맞춤 5단계 위험도 판단."/>
+  <meta property="og:image" content="./screenshots/04_result_danger.png"/>
+  <meta property="og:type" content="website"/>
+  <meta name="theme-color" content="#4A6B9C"/>
+  <link rel="icon" href="./chemicheck_logo.png" type="image/png"/>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"/>
   <link rel="stylesheet" href="./style.css"/>
 </head>
 <body>
 
-<!-- ──────────────────────────────
-     NAV
-────────────────────────────── -->
-<nav class="snav" id="snav">
+<!-- ── NAV ── -->
+<nav class="snav" id="snav" role="navigation">
   <div class="snav-inner">
     <a href="#" class="snav-logo">
       <img src="./chemicheck_logo.png" alt="케미체크 로고"/>
       <span class="snav-logo-text">케미체크</span>
     </a>
-    <a href="#try" class="snav-btn">iPhone 설치</a>
+    <a href="#" class="snav-btn" data-tf>TestFlight 설치</a>
   </div>
 </nav>
 
-<!-- ──────────────────────────────
-     §1 HERO
-────────────────────────────── -->
-<section class="hero" id="home">
-  <div class="hero-inner">
+<!-- ── STICKY BOTTOM CTA ── -->
+<div class="sticky-cta" id="stickyCta" role="complementary">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-text">
+      <div class="sticky-cta-title">케미체크 베타 무료 체험</div>
+      <div class="sticky-cta-sub">TestFlight · iOS 전용 · 로그인 불필요</div>
+    </div>
+    <a href="#" class="btn btn-green btn-sm" data-tf>무료 설치 →</a>
+  </div>
+</div>
 
-    <!-- Eyebrow -->
-    <div class="hero-badges">
-      <span class="chip chip-green">
-        <span class="live-dot"></span>
-        베타 테스트 중
-      </span>
-      <span class="chip">AI 성분 분석</span>
-      <span class="chip">iOS 전용</span>
+<!-- ════════════════════════════════════
+     §1 HERO
+════════════════════════════════════ -->
+<section class="hero" id="heroSec">
+  <div class="hero-inner">
+    <div class="award-badge fu">
+      🏆 2026 기후부 AX 아이디어 경진대회 본선 진출작
     </div>
 
-    <h1 class="hero-h1">
-      화학제품 라벨,<br/>
-      사진 한 장으로<br/>
-      <span class="hl">안전을 확인</span>하세요
+    <div class="hero-badges fu">
+      <span class="chip chip-navy">
+        <span class="live-dot"></span>
+        Beta · iOS 전용
+      </span>
+      <span class="chip chip-green">무료 체험 가능</span>
+      <span class="chip">로그인 불필요</span>
+    </div>
+
+    <h1 class="hero-h1 fu">
+      사진 한 장으로,<br/>
+      우리집 화학물질<br/>
+      안전을 <span class="hl">결정합니다.</span>
     </h1>
-    <p class="hero-sub">
-      국가중점데이터 기반 AI가 세제·샴푸·화장품의<br/>
-      유해 성분을 즉시 분석해 우리 가족에게 안전한지 알려드립니다.
+
+    <p class="hero-sub fu">
+      식약처·환경부·산업부 공공데이터 기반<br/>
+      생활화학제품 안전 AI Agent
     </p>
 
-    <div class="hero-btns">
-      <a href="#video" class="btn btn-outline btn-full">
-        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M10 8.5v7l7-3.5z" fill="currentColor" stroke="none"/>
+    <div class="hero-btns fu">
+      <a href="#" class="btn btn-navy btn-full" data-tf>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19c4.97 0 9-4.03 9-9S16.97 1 12 1 3 5.03 3 10s4.03 9 9 9z"/><circle cx="12" cy="10" r="3"/>
         </svg>
-        시연 영상 보기
+        TestFlight로 무료 체험 →
       </a>
+      <a href="#videoSec" class="btn btn-outline btn-full">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/>
+        </svg>
+        60초 시연 영상 보기
+      </a>
+    </div>
+
+    <div class="hero-trust fu">
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">3종</span>
+        <span class="hero-trust-txt">국가중점데이터</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">7,189</span>
+        <span class="hero-trust-txt">화학물질 탑재</span>
+      </div>
+      <div class="hero-trust-item">
+        <span class="hero-trust-num">41</span>
+        <span class="hero-trust-txt">Swift 파일 빌드</span>
+      </div>
     </div>
   </div>
 
-  <!-- App label bridge -->
-  <div class="hero-brand">
+  <div class="hero-brand fu">
     <img src="./chemicheck_logo.png" alt="케미체크" class="hero-brand-logo"/>
     <div class="hero-brand-text">
       <span class="hero-brand-name">케미체크</span>
-      <span class="hero-brand-sub">ChemiCheck · Chemical Safety AI</span>
+      <span class="hero-brand-sub">ChemiCheck · Chemical Safety AI Agent</span>
     </div>
   </div>
 
-  <!-- Phone mockup scene -->
-  <div class="hero-phone-wrap">
+  <div class="hero-phone-wrap fu">
     <div class="hero-phone-scene">
-      <!-- Floating badge: score -->
-      <div class="fc fc-score">
-        <div class="fc-score-n">92</div>
-        <div class="fc-score-l">안전도 점수</div>
-        <div class="fc-score-s">✓ 가족 안전</div>
-      </div>
-      <!-- Floating badge: warning -->
-      <div class="fc fc-warn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M11 4.5L2 20h20L13 4.5a1.2 1.2 0 0 0-2 0z"/>
-          <line x1="12" y1="10" x2="12" y2="14"/>
-          <circle cx="12" cy="17.5" r=".8" fill="currentColor" stroke="none"/>
-        </svg>
-        <div>
-          <div class="fc-wt">성분 주의 1건</div>
-          <div class="fc-ws">자세히 보기 →</div>
-        </div>
-      </div>
-
-      <!-- Phone -->
       <div class="h-phone">
         <div class="h-pill"></div>
         <div class="h-screen">
-          <img src="./screenshots/01_home.png" alt="케미체크 홈 화면" style="width:100%;height:100%;object-fit:cover;object-position:top;"/>
+          <img src="./screenshots/01_home.png" alt="케미체크 홈 화면"/>
+        </div>
+      </div>
+      <div class="fc fc-score">
+        <div class="fc-score-n">안전</div>
+        <div class="fc-score-l">위험도 분석</div>
+        <div class="fc-score-s">✓ 이상 없음</div>
+      </div>
+      <div class="fc fc-warn">
+        <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/></svg>
+        <div>
+          <div class="fc-wt">피부자극 주의</div>
+          <div class="fc-ws">성분 1종 확인됨</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ──────────────────────────────
-     §2 GALLERY
-────────────────────────────── -->
-<section class="sec-gallery" id="gallery">
+<!-- ════════════════════════════════════
+     §2 PROBLEM
+════════════════════════════════════ -->
+<section class="sec-problem wrap" id="problemSec">
+  <div class="sec-no fu">The Problem</div>
+  <p class="eyebrow fu">우리가 모르는 사실</p>
+  <h2 class="sec-h fu">우리는 매일 <span class="hl-n">화학물질에 둘러싸여</span> 삽니다</h2>
+  <p class="sec-p fu">
+    세제, 섬유유연제, 방향제, 화장품… 생활화학제품에 함유된 성분이
+    가족에게 어떤 영향을 미치는지 우리는 알고 있을까요?
+  </p>
+
+  <div class="stat-cards" style="margin-top:20px">
+    <div class="stat-card fu">
+      <div class="stat-bar"></div>
+      <div>
+        <div>
+          <span class="stat-num" data-target="427000000">—</span>
+          <span class="stat-unit">건</span>
+        </div>
+        <div class="stat-lbl">2023년 생활화학제품 생산·수입 규모</div>
+        <div class="stat-note">국내 연간 화학제품 총 유통량</div>
+        <div class="stat-src">출처: 환경부 화학물질 통계조사</div>
+      </div>
+    </div>
+    <div class="stat-card fu">
+      <div class="stat-bar-n"></div>
+      <div>
+        <div>
+          <span class="stat-num" data-target="565000">—</span>
+          <span class="stat-unit">건</span>
+        </div>
+        <div class="stat-lbl">2022년 화학물질 관련 건강피해 신고</div>
+        <div class="stat-note">의심 사례 포함, 공식 집계 기준</div>
+        <div class="stat-src">출처: 식약처 부작용 보고 시스템</div>
+      </div>
+    </div>
+    <div class="stat-card fu">
+      <div class="stat-bar-r"></div>
+      <div>
+        <div>
+          <span class="stat-num" data-target="13000000">—</span>
+          <span class="stat-unit">명</span>
+        </div>
+        <div class="stat-lbl">국내 화학물질 과민·알레르기 인구</div>
+        <div class="stat-note">아동·노인·임산부 포함 추산</div>
+        <div class="stat-src">출처: 국민건강영양조사, 질병관리청</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="problem-em fu">
+    <div class="problem-em-q">그래서 케미체크가 묻습니다</div>
+    <div class="problem-em-a">
+      "내가 지금 들고 있는 제품,<br/>
+      <strong>우리 아이에게 써도 괜찮을까요?"</strong>
+    </div>
+    <div class="problem-src">케미체크는 이 질문에 10ms 이내 답합니다</div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §3 SOLUTION
+════════════════════════════════════ -->
+<section class="sec-solution" id="solutionSec">
   <div class="wrap">
-    <p class="eyebrow fu">앱 스크린샷</p>
-    <h2 class="sec-h fu">직관적인 UI로<br/>한눈에 파악</h2>
+    <div class="sec-no fu">How It Works</div>
+    <p class="eyebrow fu">4단계 안전 분석</p>
+    <h2 class="sec-h fu">촬영부터 결정까지,<br/><span class="hl-g">4단계</span>가 전부입니다</h2>
+    <p class="sec-p fu">복잡한 성분표 해석은 케미체크가 맡습니다. 당신은 결정만 하세요.</p>
+
+    <div class="steps">
+      <div class="step-row fu">
+        <div class="ibox ibox-n">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/>
+          </svg>
+        </div>
+        <div class="step-body">
+          <span class="step-lbl">Step 1</span>
+          <div class="step-en">Capture</div>
+          <div class="step-title">라벨 촬영</div>
+          <div class="step-desc">마트에서 제품 라벨을 사진 한 장 찍으세요. Vision OCR이 성분명을 즉시 인식합니다.</div>
+        </div>
+      </div>
+
+      <div class="step-row fu">
+        <div class="ibox ibox-g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="step-body">
+          <span class="step-lbl">Step 2</span>
+          <div class="step-en">Analyze</div>
+          <div class="step-title">AI 성분 분석</div>
+          <div class="step-desc">온디바이스 SQLite DB에서 7,189종 화학물질을 10ms 이내 매칭. 인터넷 불필요.</div>
+        </div>
+      </div>
+
+      <div class="step-row fu">
+        <div class="ibox ibox-a">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="step-body">
+          <span class="step-lbl">Step 3</span>
+          <div class="step-en">Personalize</div>
+          <div class="step-title">가족 맞춤 보정</div>
+          <div class="step-desc">영아·어린이·임산부·노인·반려동물 프로필로 동일 성분의 위험도를 다르게 계산합니다.</div>
+        </div>
+      </div>
+
+      <div class="step-row fu">
+        <div class="ibox ibox-g">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="step-body">
+          <span class="step-lbl">Step 4</span>
+          <div class="step-en">Decide</div>
+          <div class="step-title">안전 결정</div>
+          <div class="step-desc">5단계 배지로 즉시 판단. 위반·회수 이력 검색, 안전한 대체재까지 추천합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     GALLERY (앱 스크린샷)
+════════════════════════════════════ -->
+<section class="sec-gallery" id="gallerySec">
+  <div class="wrap">
+    <p class="eyebrow fu">App Screenshots</p>
+    <h2 class="sec-h fu">실제 앱 화면</h2>
+    <p class="sec-p fu">촬영 → 분석 → 결과 → 가족관리까지, 실제 동작 화면입니다.</p>
   </div>
 
   <div class="gallery-rail" id="galleryRail">
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/01_home.png" alt="홈 화면"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/01_home.png" alt="홈 화면" loading="lazy"/></div>
       </div>
-      <p class="g-cap">홈 화면</p>
+      <div class="g-cap">홈 · 제품 이력</div>
     </div>
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/03_scan.png" alt="라벨 촬영 화면"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/03_scan.png" alt="스캔 화면" loading="lazy"/></div>
       </div>
-      <p class="g-cap">라벨 촬영</p>
+      <div class="g-cap">라벨 촬영</div>
     </div>
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/04_result_danger.png" alt="AI 분석 결과 - 위험"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/04_result_danger.png" alt="위험 결과" loading="lazy"/></div>
       </div>
-      <p class="g-cap">분석 결과 · 위험</p>
+      <div class="g-cap">위험 성분 검출</div>
     </div>
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/05_result_caution.png" alt="AI 분석 결과 - 주의"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/05_result_caution.png" alt="주의 결과" loading="lazy"/></div>
       </div>
-      <p class="g-cap">분석 결과 · 주의</p>
+      <div class="g-cap">주의 등급 결과</div>
     </div>
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/08_family.png" alt="가족 프로필 관리"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/08_family.png" alt="가족 관리" loading="lazy"/></div>
       </div>
-      <p class="g-cap">가족 관리</p>
+      <div class="g-cap">가족 프로필</div>
     </div>
-
     <div class="g-slide">
       <div class="g-phone">
         <div class="g-pill"></div>
-        <div class="g-screen">
-          <img src="./screenshots/07_myproducts.png" alt="내 제품 · 회수 알림"/>
-        </div>
+        <div class="g-screen"><img src="./screenshots/07_myproducts.png" alt="제품 보관함" loading="lazy"/></div>
       </div>
-      <p class="g-cap">내 제품 · 회수 알림</p>
+      <div class="g-cap">내 제품 보관함</div>
     </div>
-
   </div>
 
-  <div class="gallery-dots" id="galleryDots">
-    <div class="gd on"></div>
-    <div class="gd"></div>
-    <div class="gd"></div>
-    <div class="gd"></div>
-    <div class="gd"></div>
-    <div class="gd"></div>
+  <div class="gallery-dots">
+    <div class="gd on"></div><div class="gd"></div><div class="gd"></div>
+    <div class="gd"></div><div class="gd"></div><div class="gd"></div>
   </div>
-  <p class="gallery-hint" style="padding-bottom:8px;">← 좌우로 스와이프 →</p>
+  <div class="gallery-hint">← 드래그하여 더 보기 →</div>
 </section>
 
-<!-- ──────────────────────────────
-     §3 VIDEO
-────────────────────────────── -->
-<section class="sec-video" id="video">
+<!-- ════════════════════════════════════
+     §4 VALUE PROPS
+════════════════════════════════════ -->
+<section class="sec-value" id="valueSec">
   <div class="wrap">
-    <div class="fu">
-      <p class="eyebrow">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3l14 9L5 21z"/></svg>
-        시연 영상
-      </p>
-      <h2 class="sec-h">라벨 찍으면 바로 분석,<br/>30초면 끝납니다</h2>
-      <p class="sec-p">실제 앱 사용 화면을 영상으로 확인해보세요.</p>
-    </div>
-    <div class="fu video-box" id="videoBox" style="margin-top:18px;">
-      <!--
-        VIDEO PLACEHOLDER
-        방법 1: MP4 파일 업로드 후
-          <video autoplay muted playsinline loop>
-            <source src="./demo.mp4" type="video/mp4"/>
-          </video>
-        방법 2: 유튜브 쇼츠 사용
-          <iframe src="https://www.youtube.com/embed/YOUR_ID?autoplay=1&mute=1&loop=1&controls=0" allow="autoplay"></iframe>
-      -->
-      <div class="video-ph">
-        <button class="video-play" id="videoPlay" aria-label="영상 재생">
-          <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
-            <path d="M10 8.5v7l7-3.5z"/>
+    <div class="sec-no fu">Core Value</div>
+    <p class="eyebrow eyebrow-navy fu">4가지 핵심 가치</p>
+    <h2 class="sec-h fu">왜 케미체크인가요?</h2>
+    <p class="sec-p fu">비슷한 앱과 비교해보세요. 케미체크만이 할 수 있는 것들이 있습니다.</p>
+
+    <div class="value-grid">
+      <div class="value-card fu">
+        <div class="ibox ibox-g" style="margin-bottom:12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
           </svg>
-        </button>
-        <div class="video-ph-t">시연 영상 준비 중</div>
-        <div class="video-ph-s">라벨 촬영 → AI 분석 → 결과 확인</div>
+        </div>
+        <div class="value-num">&lt;10ms</div>
+        <div class="value-title">온디바이스 검색</div>
+        <div class="value-desc">서버 없이 기기 내 SQLite DB에서 화학물질을 10ms 이내 조회. 오프라인도 동작.</div>
+      </div>
+
+      <div class="value-card fu">
+        <div class="ibox ibox-n" style="margin-bottom:12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+          </svg>
+        </div>
+        <div class="value-num">7,189</div>
+        <div class="value-title">화학물질 완전 탑재</div>
+        <div class="value-desc">식약처·환경부·산업부 3개 기관 데이터를 52MB SQLite DB 한 파일로 통합.</div>
+      </div>
+
+      <div class="value-card fu">
+        <div class="ibox ibox-a" style="margin-bottom:12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="value-num">5규칙</div>
+        <div class="value-title">가족 맞춤 위험도</div>
+        <div class="value-desc">영아·어린이·임산부·노인·반려동물 5개 프로필별로 위험도를 차등 적용.</div>
+      </div>
+
+      <div class="value-card fu">
+        <div class="ibox ibox-s" style="margin-bottom:12px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+          </svg>
+        </div>
+        <div class="value-num">0</div>
+        <div class="value-title">Privacy by Design</div>
+        <div class="value-desc">촬영 사진이 서버로 전송되지 않습니다. 분석은 100% 기기 안에서 완결.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ──────────────────────────────
-     §3 PROBLEM / STATS
-────────────────────────────── -->
-<section class="sec-stats" id="problem">
+<!-- ════════════════════════════════════
+     §5 DATA & TECH
+════════════════════════════════════ -->
+<section class="sec-data" id="dataSec">
   <div class="wrap">
-    <p class="eyebrow fu">
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M11 4.5L2 20h20L13 4.5a1.2 1.2 0 0 0-2 0z"/>
-        <line x1="12" y1="10" x2="12" y2="14"/>
-        <circle cx="12" cy="17.5" r=".8" fill="currentColor" stroke="none"/>
-      </svg>
-      왜 케미체크인가
-    </p>
-    <h2 class="fu stats-h sec-h">
-      가정용 화학제품,<br/>
-      <span class="red">숫자로 보면</span> 심각합니다
-    </h2>
-    <p class="stats-sub fu">국가 공식 통계 기준</p>
+    <div class="sec-no fu">Data & Technology</div>
+    <p class="eyebrow eyebrow-navy fu">데이터·기술 신뢰성</p>
+    <h2 class="sec-h fu">숫자로 증명하는<br/><span class="hl-n">데이터 신뢰도</span></h2>
+    <p class="sec-p fu">3개 정부 기관, 8개 공공 데이터셋, 627,744건의 원천 데이터로 구성됩니다.</p>
 
-    <div class="stat-cards">
-      <div class="stat-card fu">
-        <div class="stat-bar"></div>
-        <div>
-          <div>
-            <span class="stat-num" data-target="427000000">4.27억</span>
-            <span class="stat-unit">개+</span>
+    <div class="data-grid">
+      <div class="data-card fu">
+        <span class="data-big" data-target="7189">—</span><span class="data-unit"> 종</span>
+        <div class="data-lbl">탑재 화학물질</div>
+        <div class="data-src">식약처·환경부·산업부 통합</div>
+      </div>
+      <div class="data-card fu">
+        <span class="data-big" data-target="214815">—</span><span class="data-unit"> 개</span>
+        <div class="data-lbl">매칭 제품 수</div>
+        <div class="data-src">생활화학제품 전체</div>
+      </div>
+      <div class="data-card fu">
+        <span class="data-big" data-target="5723">—</span><span class="data-unit"> 건</span>
+        <div class="data-lbl">위반·회수 이력</div>
+        <div class="data-src">식약처 수거·회수 DB</div>
+      </div>
+      <div class="data-card fu">
+        <span class="data-big" data-target="3534">—</span><span class="data-unit"> 건</span>
+        <div class="data-lbl">전성분 공개 제품</div>
+        <div class="data-src">화학물질 전성분 데이터</div>
+      </div>
+    </div>
+
+    <!-- 파이프라인 -->
+    <div class="pipeline fu">
+      <div class="pip-title">데이터 구축 파이프라인</div>
+      <div class="pip-steps">
+        <div class="pip-step">
+          <div class="pip-dot">1</div>
+          <div class="pip-body">
+            <div class="pip-head">공공 API 수집</div>
+            <div class="pip-sub">3개 기관 8개 데이터셋 → 원천 627,744건</div>
+            <span class="pip-badge">Python · requests</span>
           </div>
-          <div class="stat-lbl">연간 화학제품 시장 규모</div>
-          <div class="stat-note">국내 가정·산업용 합산</div>
-          <div class="stat-src">출처: 환경부 화학물질 관리 현황</div>
         </div>
-      </div>
-      <div class="stat-card fu">
-        <div class="stat-bar" style="background:var(--amber);"></div>
-        <div>
-          <div>
-            <span class="stat-num" data-target="560000">56만</span>
-            <span class="stat-unit">명+</span>
+        <div class="pip-step">
+          <div class="pip-dot">2</div>
+          <div class="pip-body">
+            <div class="pip-head">정규화 · 중복 제거</div>
+            <div class="pip-sub">성분명 표준화, 동의어 매핑, 중복 제거</div>
+            <span class="pip-badge">pandas · fuzz</span>
           </div>
-          <div class="stat-lbl">화학물질 노출 추정 인구</div>
-          <div class="stat-note">가정·생활환경 기준</div>
-          <div class="stat-src">출처: 국립환경과학원</div>
         </div>
-      </div>
-      <div class="stat-card fu">
-        <div class="stat-bar" style="background:var(--red);"></div>
-        <div>
-          <div>
-            <span class="stat-num" data-target="13000000">1,300만</span>
-            <span class="stat-unit">개+</span>
+        <div class="pip-step">
+          <div class="pip-dot">3</div>
+          <div class="pip-body">
+            <div class="pip-head">위험도 라벨링</div>
+            <div class="pip-sub">5단계 위험도 스코어 + 가족 보정 계수 적용</div>
+            <span class="pip-badge">규칙 엔진 · 전문가 검토</span>
           </div>
-          <div class="stat-lbl">등록 화학물질 종류</div>
-          <div class="stat-note">소비자가 직접 확인 불가</div>
-          <div class="stat-src">출처: 화학물질정보처리시스템(NCIS)</div>
+        </div>
+        <div class="pip-step">
+          <div class="pip-dot">4</div>
+          <div class="pip-body">
+            <div class="pip-head">SQLite 패키징</div>
+            <div class="pip-sub">52MB 단일 파일 → iOS 앱 번들 탑재</div>
+            <span class="pip-badge">SQLite · Swift</span>
+          </div>
+        </div>
+        <div class="pip-step">
+          <div class="pip-dot">5</div>
+          <div class="pip-body">
+            <div class="pip-head">온디바이스 검색</div>
+            <div class="pip-sub">FTS5 인덱스 · 10ms 이내 응답 검증</div>
+            <span class="pip-badge">&lt; 10ms ✓</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="stats-msg fu">
-      대부분의 소비자는 구매한 제품에<br/>
-      <strong>어떤 성분이 들어있는지 알 방법이 없습니다.</strong>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────
-     §4 HOW IT WORKS
-────────────────────────────── -->
-<section class="sec-how" id="how">
-  <div class="wrap">
-    <p class="eyebrow fu">사용 방법</p>
-    <h2 class="sec-h fu">딱 4단계,<br/>누구나 쉽게 할 수 있어요</h2>
-    <p class="sec-p fu" style="margin-bottom:0;">앱 설치 후 30초 만에 결과를 확인합니다.</p>
-
-    <div class="steps">
-
-      <div class="step-row fu">
-        <div class="ibox ibox-g">
-          <!-- CUSTOM: scan-label (document + magnifier) -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="4" width="12" height="14" rx="2"/>
-            <line x1="6" y1="8" x2="11" y2="8"/>
-            <line x1="6" y1="11" x2="11" y2="11"/>
-            <line x1="6" y1="14" x2="9" y2="14"/>
-            <circle cx="17.5" cy="16.5" r="3.5"/>
-            <line x1="20" y1="19" x2="22" y2="21"/>
-          </svg>
-        </div>
-        <div class="step-body">
-          <span class="step-lbl">STEP 1</span>
-          <p class="step-title">라벨을 카메라로 찍어요</p>
-          <p class="step-desc">성분표 사진만 찍으면 됩니다. 화학 지식 없이 누구나 할 수 있어요.</p>
-        </div>
-      </div>
-
-      <div class="step-row fu">
-        <div class="ibox ibox-b">
-          <!-- CUSTOM: neural-network / AI icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="2.8"/>
-            <path d="M12 9.2V5"/>
-            <path d="M14.6 10.4L18 7.5"/>
-            <path d="M14.6 13.6L18 16.5"/>
-            <path d="M12 14.8V19"/>
-            <path d="M9.4 13.6L6 16.5"/>
-            <path d="M9.4 10.4L6 7.5"/>
-            <circle cx="12" cy="5" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="18" cy="7.5" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="18" cy="16.5" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="6" cy="16.5" r="1.2" fill="currentColor" stroke="none"/>
-            <circle cx="6" cy="7.5" r="1.2" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <div class="step-body">
-          <span class="step-lbl">STEP 2</span>
-          <p class="step-title">AI가 성분을 즉시 분석해요</p>
-          <p class="step-desc">국가 인증 화학물질 DB를 기반으로 유해 성분과 위험도를 자동 분류합니다.</p>
-        </div>
-      </div>
-
-      <div class="step-row fu">
-        <div class="ibox ibox-a">
-          <!-- CUSTOM: family (adult + child silhouettes) -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="8.5" cy="5.5" r="2.8"/>
-            <path d="M3 21v-2.5a5.5 5.5 0 0 1 11 0V21"/>
-            <circle cx="17.5" cy="7" r="2.2"/>
-            <path d="M14 21v-2a4 4 0 0 1 7 0v2"/>
-          </svg>
-        </div>
-        <div class="step-body">
-          <span class="step-lbl">STEP 3</span>
-          <p class="step-title">가족 맞춤 결과를 받아요</p>
-          <p class="step-desc">임산부·영유아·아이 등 가족 구성원별 위험도를 개인화해서 알려드립니다.</p>
-        </div>
-      </div>
-
-      <div class="step-row fu">
-        <div class="ibox ibox-g">
-          <!-- CUSTOM: shield-check -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2.5l8.5 3.2V11.5c0 5-3.8 9-8.5 10.5C7.3 20.5 3.5 16.5 3.5 11.5V5.7z"/>
-            <path d="M8.5 12l2.5 2.5 5-5"/>
-          </svg>
-        </div>
-        <div class="step-body">
-          <span class="step-lbl">STEP 4</span>
-          <p class="step-title">안전한 구매를 결정해요</p>
-          <p class="step-desc">위험 성분이 있다면 안전한 대체 제품을 추천해 더 나은 선택을 도와드립니다.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────
-     §6 TRUST / TECH
-────────────────────────────── -->
-<section class="sec-trust" id="tech">
-  <div class="wrap">
-    <p class="eyebrow fu">기술 · 신뢰</p>
-    <h2 class="sec-h fu">정확하고,<br/>안전하게 만들었습니다</h2>
-
-    <div class="trust-list">
-
-      <div class="trust-row fu">
-        <div class="ibox ibox-b">
-          <!-- CUSTOM: database/layers -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <ellipse cx="12" cy="5.5" rx="9" ry="3"/>
-            <path d="M3 5.5v5c0 1.65 3.58 3 9 3s9-1.35 9-3v-5"/>
-            <path d="M3 10.5v5c0 1.65 3.58 3 9 3s9-1.35 9-3v-5"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-lbl">국가중점데이터 기반</div>
-          <div class="trust-sub">환경부·식약처 공식 화학물질 DB 연동</div>
-        </div>
-      </div>
-
-      <div class="trust-row fu">
-        <div class="ibox ibox-g">
-          <!-- CUSTOM: phone-check -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="5" y="2" width="14" height="20" rx="3"/>
-            <line x1="9" y1="5.5" x2="15" y2="5.5"/>
-            <circle cx="12" cy="18.5" r="1" fill="currentColor" stroke="none"/>
-            <path d="M9 12l2.5 2.5 4-4"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-lbl">iOS 네이티브 빌드</div>
-          <div class="trust-sub">Swift · TestFlight 배포 · Apple 심사 통과</div>
-        </div>
-      </div>
-
-      <div class="trust-row fu">
-        <div class="ibox ibox-a">
-          <!-- CUSTOM: shield-lock -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 2.5l8.5 3.2V11.5c0 5-3.8 9-8.5 10.5C7.3 20.5 3.5 16.5 3.5 11.5V5.7z"/>
-            <rect x="9" y="11" width="6" height="4.5" rx="1"/>
-            <path d="M10.2 11V9.2a1.8 1.8 0 0 1 3.6 0V11"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-lbl">온디바이스 프라이버시</div>
-          <div class="trust-sub">사진·개인정보는 기기 내에서만 처리</div>
-        </div>
-      </div>
-
-      <div class="trust-row fu">
-        <div class="ibox ibox-s">
-          <!-- CUSTOM: doc-check -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <path d="M9 13l2.5 2.5 4-4"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-lbl">정책 정합성 검토</div>
-          <div class="trust-sub">생활화학제품 관리법 · 화평법 기준 반영</div>
-        </div>
-      </div>
-
-      <div class="trust-row fu">
-        <div class="ibox ibox-b">
-          <!-- CUSTOM: eye-check -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12z"/>
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M10 19.5l2 2 4-4"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-lbl">접근성 · WCAG 2.1 AA</div>
-          <div class="trust-sub">고령자·장애인 포함 모든 사용자 고려 설계</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Comparison table -->
+    <!-- 데이터셋 테이블 -->
     <div class="compare-sect fu">
-      <h3 class="compare-title">기존 방법과 비교하면?</h3>
+      <div class="compare-title">8개 공공 데이터셋 구성</div>
       <div class="compare-scroll">
         <table class="ctable">
           <thead>
             <tr>
-              <th>기능</th>
-              <th>네이버 검색</th>
-              <th class="hl">케미체크</th>
+              <th>#</th>
+              <th>데이터셋</th>
+              <th>기관</th>
+              <th>건수</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>성분 분석 속도</td><td>~10분</td><td><span class="cv">30초</span></td></tr>
-            <tr><td>가족 개인화</td><td><span class="cx">✕</span></td><td><span class="cv">✓</span></td></tr>
-            <tr><td>공식 DB 연동</td><td><span class="cp">△</span></td><td><span class="cv">✓</span></td></tr>
-            <tr><td>라벨 사진 분석</td><td><span class="cx">✕</span></td><td><span class="cv">✓</span></td></tr>
-            <tr><td>위험 성분 알림</td><td><span class="cx">✕</span></td><td><span class="cv">✓</span></td></tr>
+            <tr><td>1</td><td>화장품 성분 DB</td><td>식약처</td><td>285,241</td></tr>
+            <tr><td>2</td><td>생활화학제품 성분</td><td>환경부</td><td>214,815</td></tr>
+            <tr><td>3</td><td>수거·회수 제품</td><td>식약처</td><td>5,723</td></tr>
+            <tr><td>4</td><td>유해화학물질 목록</td><td>환경부</td><td>7,189</td></tr>
+            <tr><td>5</td><td>살생물제 성분</td><td>환경부</td><td>8,204</td></tr>
+            <tr><td>6</td><td>전성분 공개 제품</td><td>산업부</td><td>3,534</td></tr>
+            <tr><td>7</td><td>제품 안전 인증</td><td>산업부</td><td>96,438</td></tr>
+            <tr><td>8</td><td>알레르기 유발 성분</td><td>식약처</td><td>6,600</td></tr>
+            <tr><td colspan="3"><strong>총 원천 데이터</strong></td><td><strong>627,744건</strong></td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- Privacy card -->
-    <div class="privacy-card fu">
-      <div class="ibox" style="background:rgba(255,255,255,.07);color:var(--g);min-width:40px;">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M12 2.5l8.5 3.2V11.5c0 5-3.8 9-8.5 10.5C7.3 20.5 3.5 16.5 3.5 11.5V5.7z"/>
-          <rect x="9" y="11" width="6" height="4.5" rx="1"/>
-          <path d="M10.2 11V9.2a1.8 1.8 0 0 1 3.6 0V11"/>
-        </svg>
+    <!-- Tech stack -->
+    <div class="tech-stack-card fu">
+      <div class="ts-label">Tech Stack</div>
+      <div class="ts-tags">
+        <span class="ts-tag ts-tag-g">Swift 5.9</span>
+        <span class="ts-tag ts-tag-g">SwiftUI</span>
+        <span class="ts-tag ts-tag-g">Vision Framework</span>
+        <span class="ts-tag">SQLite (FTS5)</span>
+        <span class="ts-tag">Core Data</span>
+        <span class="ts-tag">Swift Concurrency</span>
+        <span class="ts-tag">Python · pandas</span>
+        <span class="ts-tag">OpenAI API</span>
       </div>
-      <div>
-        <div class="pc-title">개인정보는 기기 밖으로 나가지 않아요</div>
-        <div class="pc-desc">촬영한 사진과 가족 정보는 서버에 저장되지 않습니다. 분석은 온디바이스 AI로 처리되며, 사용자 동의 없이는 어떤 데이터도 수집하지 않습니다.</div>
+      <div class="ts-label">코드 메트릭</div>
+      <div class="ts-metrics">
+        <div class="ts-m">
+          <div class="ts-m-num">41</div>
+          <div class="ts-m-lbl">Swift 파일</div>
+        </div>
+        <div class="ts-m">
+          <div class="ts-m-num">52MB</div>
+          <div class="ts-m-lbl">온디바이스 DB</div>
+        </div>
+        <div class="ts-m">
+          <div class="ts-m-num">8</div>
+          <div class="ts-m-lbl">공공 API 연동</div>
+        </div>
+        <div class="ts-m">
+          <div class="ts-m-num">&lt;10ms</div>
+          <div class="ts-m-lbl">검색 응답속도</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ──────────────────────────────
-     §7 TESTFLIGHT CTA
-────────────────────────────── -->
-<section class="sec-try" id="try">
+<!-- ════════════════════════════════════
+     §6 VIDEO
+════════════════════════════════════ -->
+<section class="sec-video" id="videoSec">
   <div class="wrap">
-    <p class="eyebrow fu">무료 베타 테스트</p>
+    <p class="eyebrow fu">Demo</p>
+    <h2 class="sec-h fu">영상으로 먼저 확인하세요</h2>
+    <p class="sec-p fu">실제 케미체크 동작 영상과 경진대회 발표자료를 제공합니다.</p>
 
-    <div class="tf-card fu">
-      <div class="tf-top">
-        <div class="tf-icon">
-          <!-- TestFlight / airplane icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/>
-          </svg>
+    <div class="video-cards">
+      <div class="video-card fu">
+        <div class="video-box">
+          <div class="video-ph">
+            <button class="video-play" aria-label="재생">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div>
+              <div class="video-ph-t">60초 핵심 시연</div>
+              <div class="video-ph-s">촬영→분석→결과 전체 흐름</div>
+            </div>
+          </div>
         </div>
-        <div>
-          <div class="tf-title">TestFlight 무료 설치</div>
-          <div class="tf-sub">iOS 16+ · iPhone 전용 · 무료</div>
+        <div class="video-card-body">
+          <div class="video-card-title">60초 핵심 시연</div>
+          <div class="video-card-desc">마트 제품 촬영부터 안전 판정 결과까지, 60초 요약</div>
         </div>
       </div>
-      <div class="tf-steps">
-        <div class="tf-step"><div class="tf-n">1</div><span>App Store에서 <strong>TestFlight</strong> 설치</span></div>
-        <div class="tf-step"><div class="tf-n">2</div><span>초대 링크 또는 <strong>QR 코드</strong> 스캔</span></div>
-        <div class="tf-step"><div class="tf-n">3</div><span><strong>케미체크 설치</strong> 후 바로 사용</span></div>
-      </div>
-      <!-- QR code placeholder -->
-      <div style="background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.12);border-radius:12px;padding:16px;text-align:center;margin-bottom:16px;">
-        <!-- QR 코드: <img src="./qr_testflight.png" alt="TestFlight QR" style="width:90px;height:90px;margin:0 auto 8px;border-radius:8px;display:block;"/> -->
-        <div style="width:80px;height:80px;margin:0 auto 8px;border:1.5px dashed rgba(255,255,255,.18);border-radius:10px;display:flex;align-items:center;justify-content:center;">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/>
-            <rect x="2" y="14" width="8" height="8" rx="1"/>
-            <line x1="14" y1="14" x2="14" y2="14"/><line x1="17" y1="14" x2="22" y2="14"/>
-            <line x1="14" y1="17" x2="14" y2="22"/><line x1="19" y1="17" x2="22" y2="17"/>
-            <line x1="19" y1="20" x2="22" y2="20"/><line x1="19" y1="17" x2="19" y2="20"/>
-          </svg>
-        </div>
-        <div style="font-size:11px;color:rgba(255,255,255,.28);">QR 코드 준비 중</div>
-      </div>
-      <button class="tf-btn" id="tfBtn2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="5" y="2" width="14" height="20" rx="3"/>
-          <path d="M12 7v6M9 11l3 3 3-3"/>
-          <line x1="9" y1="18" x2="15" y2="18"/>
-        </svg>
-        TestFlight 링크로 설치하기
-      </button>
-      <div class="tf-note">현재 베타 테스트 중 · 무료 · 언제든 삭제 가능</div>
-    </div>
 
-    <!-- Guide -->
-    <h3 class="guide-title fu">설치가 처음이라면</h3>
-    <div class="guide-list">
-      <div class="guide-row fu">
-        <div class="guide-num">1</div>
-        <div>
-          <strong class="g-strong">TestFlight 앱 먼저 설치</strong>
-          <span class="g-span">App Store에서 "TestFlight"를 검색해 설치합니다. Apple 공식 베타 앱입니다.</span>
+      <div class="video-card fu">
+        <div class="video-box">
+          <div class="video-ph">
+            <button class="video-play" aria-label="재생">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div>
+              <div class="video-ph-t">3분 전체 흐름</div>
+              <div class="video-ph-s">가족 프로필 · 회수 이력 · 대체재 추천</div>
+            </div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-title">3분 전체 흐름</div>
+          <div class="video-card-desc">가족 맞춤 보정, 회수 이력 조회, 대체재 추천 기능 시연</div>
         </div>
       </div>
-      <div class="guide-row fu">
-        <div class="guide-num">2</div>
-        <div>
-          <strong class="g-strong">초대 링크 또는 QR 접속</strong>
-          <span class="g-span">위의 QR 코드를 카메라로 스캔하거나, 초대 링크를 Safari로 엽니다.</span>
+
+      <div class="video-card fu">
+        <div class="video-box">
+          <div class="video-ph">
+            <button class="video-play" aria-label="재생">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+            </button>
+            <div>
+              <div class="video-ph-t">5분 발표 영상</div>
+              <div class="video-ph-s">경진대회 본선 발표 전체</div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="guide-row fu">
-        <div class="guide-num">3</div>
-        <div>
-          <strong class="g-strong">"수락" → "설치" 탭</strong>
-          <span class="g-span">TestFlight에서 케미체크 베타를 수락하고 설치합니다. 바로 사용 가능합니다.</span>
+        <div class="video-card-body">
+          <div class="video-card-title">5분 발표 영상</div>
+          <div class="video-card-desc">2026 기후부 AX 아이디어 경진대회 본선 발표 전체 영상</div>
         </div>
       </div>
     </div>
-    <p class="android-note fu">
-      Android 버전은 2025년 하반기 출시 예정입니다.
-    </p>
+
+    <!-- 발표자료 다운로드 -->
+    <div class="slide-dl" style="margin-top:28px">
+      <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:4px">📄 발표자료 다운로드</div>
+      <a href="#" class="slide-row" onclick="return false">
+        <span class="slide-ic">📊</span>
+        <div class="slide-txt">
+          <div class="slide-name">케미체크 발표자료 (AX 경진대회)</div>
+          <div class="slide-meta">PDF · 준비중 · 심사 전 공개 예정</div>
+        </div>
+        <span class="slide-dl-btn">다운로드</span>
+      </a>
+      <a href="#" class="slide-row" onclick="return false">
+        <span class="slide-ic">📋</span>
+        <div class="slide-txt">
+          <div class="slide-name">케미체크 기획서 (Full version)</div>
+          <div class="slide-meta">PDF · 준비중 · 문의 시 제공</div>
+        </div>
+        <span class="slide-dl-btn">요청</span>
+      </a>
+    </div>
   </div>
 </section>
 
-<!-- ──────────────────────────────
+<!-- ════════════════════════════════════
+     §7 SOCIAL VALUE + TEAM
+════════════════════════════════════ -->
+<section class="sec-social wrap" id="socialSec">
+  <div class="sec-no fu">Impact</div>
+  <p class="eyebrow eyebrow-navy fu">사회적 가치</p>
+  <h2 class="sec-h fu">케미체크가 만드는<br/><span class="hl-n">5가지 변화</span></h2>
+  <p class="sec-p fu">앱 하나가 아닙니다. 화학물질 정보 불균형을 해소하는 공공 인프라입니다.</p>
+
+  <div class="social-grid">
+    <div class="social-row fu">
+      <div class="social-num">1</div>
+      <div>
+        <div class="social-title">정보 격차 해소</div>
+        <div class="social-desc">전문 지식 없이도 화학물질 위험도를 즉시 파악. 디지털 취약 계층도 쉽게 사용.</div>
+      </div>
+    </div>
+    <div class="social-row fu">
+      <div class="social-num">2</div>
+      <div>
+        <div class="social-title">아동·영아 보호</div>
+        <div class="social-desc">국내 1,300만 화학 과민 인구, 특히 영·유아 가족을 위한 안전망 제공.</div>
+      </div>
+    </div>
+    <div class="social-row fu">
+      <div class="social-num">3</div>
+      <div>
+        <div class="social-title">공공데이터 활성화</div>
+        <div class="social-desc">3개 기관 분산 데이터를 통합해 시민이 실제 사용 가능한 형태로 재가공.</div>
+      </div>
+    </div>
+    <div class="social-row fu">
+      <div class="social-num">4</div>
+      <div>
+        <div class="social-title">소비자 권리 강화</div>
+        <div class="social-desc">위반·회수 이력 즉시 조회로 기업의 제품 안전 관리 압박 효과.</div>
+      </div>
+    </div>
+    <div class="social-row fu">
+      <div class="social-num">5</div>
+      <div>
+        <div class="social-title">예방적 보건</div>
+        <div class="social-desc">화학물질 노출 전 사전 판단으로 의료비·환경 비용 사전 절감.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 정책 연계 -->
+  <div class="policy-card fu" style="margin-top:28px">
+    <div class="policy-head">🏛️ 정책·법령 연계 매트릭스</div>
+    <div class="policy-row"><div class="policy-law">화학물질관리법</div><div class="policy-app">유해물질 목록 판정 기준 적용</div></div>
+    <div class="policy-row"><div class="policy-law">화장품법</div><div class="policy-app">식약처 성분·회수 이력 연동</div></div>
+    <div class="policy-row"><div class="policy-law">생활화학제품법</div><div class="policy-app">환경부 위해성 등급 적용</div></div>
+    <div class="policy-row"><div class="policy-law">개인정보보호법</div><div class="policy-app">온디바이스 처리로 사진 미전송</div></div>
+  </div>
+
+  <!-- 팀 소개 -->
+  <div style="margin-top:32px">
+    <p class="eyebrow eyebrow-navy fu">Team</p>
+    <h3 class="sec-h fu" style="font-size:20px">만든 팀</h3>
+    <div class="team-card fu">
+      <div class="team-av">🧬</div>
+      <div style="flex:1">
+        <div class="team-name">MediX</div>
+        <div class="team-desc">국민대학교 AI빅데이터융합경영학과<br/>건강·환경 분야 AI 솔루션 개발팀</div>
+        <span class="award-tag">🏆 2026 기후부 AX 경진대회 본선</span>
+      </div>
+    </div>
+    <div class="contact-links fu">
+      <div class="contact-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        <span>이메일</span> inmani1555@gmail.com
+      </div>
+      <div class="contact-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <span>GitHub</span> medix-ai/chemicheck.official
+      </div>
+      <div class="contact-row">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span>페이지</span> medix-ai.github.io/chemicheck.official
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     BETA FORM
+════════════════════════════════════ -->
+<section class="sec-beta wrap" id="betaSec">
+  <p class="eyebrow fu">Beta</p>
+  <h2 class="sec-h fu">베타 테스터 신청</h2>
+  <p class="sec-p fu">심사 전 베타 테스터를 모집합니다. 피드백 주시면 App Store 출시 시 우선 알림 드립니다.</p>
+
+  <div class="beta-box fu">
+    <div class="beta-title">무료 베타 체험 신청</div>
+    <div class="beta-desc">iOS 기기 + TestFlight 설치 필요. 개인정보 수집 없이 이메일만 입력.</div>
+    <form class="beta-form" id="betaForm">
+      <input class="beta-input" id="betaEmail" type="email" placeholder="이메일 주소" required/>
+      <input class="beta-input" id="betaName" type="text" placeholder="이름 (선택)"/>
+      <div style="font-size:12px;font-weight:600;color:var(--t3);margin:2px 0 4px">사용 목적 (선택)</div>
+      <div class="beta-check-group">
+        <label class="beta-check"><input type="checkbox" name="use" value="family"/> 가족 안전 관리</label>
+        <label class="beta-check"><input type="checkbox" name="use" value="baby"/> 영아·유아 케어</label>
+        <label class="beta-check"><input type="checkbox" name="use" value="pet"/> 반려동물</label>
+        <label class="beta-check"><input type="checkbox" name="use" value="research"/> 연구·학술</label>
+      </div>
+      <button class="btn btn-green btn-full" type="submit">베타 신청하기 →</button>
+    </form>
+    <div class="beta-ok" id="betaOk">
+      ✅ 신청 완료! 베타 출시 시 가장 먼저 알려드립니다.
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     FAQ
+════════════════════════════════════ -->
+<section class="sec-faq wrap" id="faqSec">
+  <p class="eyebrow fu">FAQ</p>
+  <h2 class="sec-h fu">자주 묻는 질문</h2>
+
+  <div class="faq-list">
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        정말 인터넷 없이도 사용할 수 있나요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">네. 케미체크는 7,189종 화학물질 DB 전체를 52MB SQLite 파일로 앱에 내장합니다. 분석·검색·위험도 판정 모두 오프라인에서 동작합니다. 마트에서 와이파이 없이도 즉시 사용 가능합니다.</div>
+    </details>
+
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        촬영한 사진이 서버로 전송되나요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">아닙니다. Vision Framework OCR이 기기 안에서만 작동하며, 사진은 기기 밖으로 전송되지 않습니다. 텍스트 추출 결과도 로컬 DB 조회에만 사용되고 저장 여부는 사용자가 결정합니다.</div>
+    </details>
+
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        가족 중 누구 기준으로 분석하나요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">가족 탭에서 프로필을 등록하면 각 구성원(영아·어린이·임산부·노인·반려동물)에 맞는 위험도를 개별 계산합니다. 예를 들어 성인에게 '주의'인 성분이 영아에게는 '위험'으로 표시됩니다.</div>
+    </details>
+
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        데이터는 얼마나 최신인가요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">현재 베타 버전은 2025년 하반기 공공 API 기준 데이터로 구성됩니다. 정식 출시 이후 분기별 업데이트로 회수 이력 및 신규 화학물질 목록을 반영할 예정입니다.</div>
+    </details>
+
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        안드로이드 버전은 없나요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">현재 iOS 전용입니다. App Store 정식 출시 이후 안드로이드 버전을 개발할 예정이며, 출시 우선순위는 베타 사용자 피드백에 따라 결정됩니다.</div>
+    </details>
+
+    <details class="faq-item fu">
+      <summary class="faq-q">
+        무료인가요? 구독료가 있나요?
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </summary>
+      <div class="faq-a">베타 기간 동안 완전 무료입니다. 정식 출시 이후 기본 기능은 무료, 가족 프로필 다수 등록·이력 백업 등 프리미엄 기능에 구독 모델을 검토 중입니다.</div>
+    </details>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §8 FINAL CTA
+════════════════════════════════════ -->
+<section class="sec-finalcta" id="ctaSec">
+  <div class="finalcta-wrap">
+    <div class="finalcta-badge fu">
+      ✦ 2026.06.23 경진대회 본선 심사
+    </div>
+    <h2 class="finalcta-h fu">
+      기획서가 아니라,<br/>
+      다음 달 <span class="hl">App Store</span>에<br/>
+      올라갈 진짜 앱입니다.
+    </h2>
+    <p class="finalcta-sub fu">
+      식약처·환경부·산업부 공식 데이터 기반.<br/>
+      7,189종 화학물질. 온디바이스. 지금 바로 체험해보세요.
+    </p>
+    <div class="finalcta-btns fu">
+      <a href="#" class="btn btn-green btn-full" data-tf>
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 19c4.97 0 9-4.03 9-9S16.97 1 12 1 3 5.03 3 10s4.03 9 9 9z"/><circle cx="12" cy="10" r="3"/>
+        </svg>
+        TestFlight 무료 설치
+      </a>
+      <a href="#betaSec" class="btn btn-light btn-full">베타 테스터 신청 →</a>
+    </div>
+    <div class="finalcta-info fu">
+      <span class="finalcta-info-item">iOS 전용</span>
+      <span class="finalcta-info-dot"></span>
+      <span class="finalcta-info-item">완전 무료</span>
+      <span class="finalcta-info-dot"></span>
+      <span class="finalcta-info-item">로그인 불필요</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
      FOOTER
-────────────────────────────── -->
+════════════════════════════════════ -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer-brand">
       <img src="./chemicheck_logo.png" alt="케미체크" class="footer-logo"/>
       <div>
-        <div class="footer-brand-name">케미체크</div>
-        <div class="footer-brand-sub">Chemical Safety AI Agent</div>
+        <div class="footer-brand-name">케미체크 ChemiCheck</div>
+        <div class="footer-brand-sub">Chemical Safety AI Agent · MediX</div>
       </div>
     </div>
+
+    <div class="footer-section-title">링크</div>
     <div class="footer-links">
-      <a href="#" class="footer-link">개인정보처리방침</a>
-      <a href="#" class="footer-link">이용약관</a>
-      <a href="#" class="footer-link">문의</a>
+      <a href="#" class="footer-link" data-tf>TestFlight 설치</a>
+      <a href="#betaSec" class="footer-link">베타 신청</a>
+      <a href="#faqSec" class="footer-link">FAQ</a>
+      <a href="#videoSec" class="footer-link">시연 영상</a>
     </div>
+
     <div class="footer-hr"></div>
+
+    <div class="footer-section-title">사용 데이터 출처</div>
+    <div class="footer-sources">
+      식품의약품안전처 의약품·화장품 통합 공개 API<br/>
+      환경부 화학물질정보시스템 (CHEMNAVI) 공개 데이터<br/>
+      산업통상자원부 제품안전정보센터 공개 API<br/>
+      환경부 생활환경정보센터 화학제품 데이터<br/>
+      공공데이터포털 (data.go.kr) 원문 데이터 기준
+    </div>
+
+    <div class="footer-hr"></div>
+
     <div class="footer-copy">
-      © 2025 케미체크(ChemiCheck). All rights reserved.<br/>
-      인천광역시 · contact@chemicheck.app
+      © 2026 MediX · 국민대학교 AI빅데이터융합경영학과<br/>
+      문의: inmani1555@gmail.com
     </div>
     <div class="footer-disc">
-      케미체크는 정보 제공 목적의 서비스로, 의학적·법적 조언을 대체하지 않습니다.<br/>
-      분석 결과는 참고용이며 실제 구매 결정에 대한 책임은 사용자에게 있습니다.
+      본 앱은 공공 데이터를 기반으로 정보를 제공합니다. 의료적 진단이나 전문가 상담을 대체하지 않습니다.
+      위험도 판정은 참고용으로만 활용하시고, 중요한 결정은 전문가와 상담하시기 바랍니다.
     </div>
   </div>
 </footer>

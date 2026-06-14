@@ -1,4 +1,4 @@
-/* ChemiCheck Landing · script.js  v4 */
+/* ChemiCheck Landing · script.js  v5 */
 
 /* ── Nav scroll shadow ── */
 const snav = document.getElementById('snav');
@@ -8,12 +8,22 @@ if (snav) {
   }, { passive: true });
 }
 
+/* ── Sticky bottom CTA ── */
+const stickyCta = document.getElementById('stickyCta');
+const heroSec   = document.getElementById('heroSec');
+if (stickyCta && heroSec) {
+  const heroObs = new IntersectionObserver(entries => {
+    entries.forEach(e => stickyCta.classList.toggle('show', !e.isIntersecting));
+  }, { threshold: 0.1 });
+  heroObs.observe(heroSec);
+}
+
 /* ── Scroll fade-in ── */
 const fadeObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('in'); fadeObs.unobserve(e.target); }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -16px 0px' });
+}, { threshold: 0.06, rootMargin: '0px 0px -16px 0px' });
 document.querySelectorAll('.fu').forEach(el => fadeObs.observe(el));
 
 /* ── Stat counter ── */
@@ -25,10 +35,16 @@ function formatNum(v, target) {
   return v.toLocaleString('ko-KR');
 }
 function finalNum(t) {
-  if (t === 427000000) return '4.27억';
-  if (t === 560000)    return '56만';
-  if (t === 13000000)  return '1,300만';
-  return t.toLocaleString('ko-KR');
+  const map = {
+    427000000: '4.27억',
+    565000:    '56.5만',
+    13000000:  '1,300만',
+    7189:      '7,189',
+    214815:    '214,815',
+    5723:      '5,723',
+    3534:      '3,534',
+  };
+  return map[t] || t.toLocaleString('ko-KR');
 }
 function runCounter(el, target, dur = 1400) {
   const t0 = performance.now();
@@ -46,7 +62,7 @@ const cntObs = new IntersectionObserver((entries) => {
     if (e.isIntersecting) { runCounter(e.target, +e.target.dataset.target); cntObs.unobserve(e.target); }
   });
 }, { threshold: 0.5 });
-document.querySelectorAll('.stat-num[data-target]').forEach(el => cntObs.observe(el));
+document.querySelectorAll('.stat-num[data-target], .data-big[data-target]').forEach(el => cntObs.observe(el));
 
 /* ── Gallery ── */
 const rail = document.getElementById('galleryRail');
@@ -101,30 +117,39 @@ function addRipple(el) {
     const y = e.clientY - rect.top  - size / 2;
     const r = document.createElement('span');
     r.style.cssText = `position:absolute;border-radius:50%;pointer-events:none;width:${size}px;height:${size}px;left:${x}px;top:${y}px;background:rgba(255,255,255,.18);transform:scale(0);animation:rippleAnim .5s ease-out forwards;`;
-    el.style.position = 'relative'; el.style.overflow = 'hidden';
     el.appendChild(r); setTimeout(() => r.remove(), 520);
   });
 }
-const rs = document.createElement('style');
-rs.textContent = '@keyframes rippleAnim{to{transform:scale(1);opacity:0;}}';
-document.head.appendChild(rs);
-document.querySelectorAll('.btn, .tf-btn, .snav-btn').forEach(addRipple);
+document.querySelectorAll('.btn, .snav-btn').forEach(addRipple);
 
 /* ── TestFlight buttons ── */
 function handleTF(e) {
-  if (e.currentTarget.getAttribute('href') === '#' || e.currentTarget.tagName === 'BUTTON') {
+  const href = this.getAttribute('href');
+  if (!href || href === '#') {
     e.preventDefault();
     alert('TestFlight 링크를 준비 중입니다.\n곧 업데이트됩니다! 🙏');
   }
 }
-const tfBtn  = document.getElementById('tfBtn');
-const tfBtn2 = document.getElementById('tfBtn2');
-if (tfBtn)  tfBtn.addEventListener('click', handleTF);
-if (tfBtn2) tfBtn2.addEventListener('click', handleTF);
+document.querySelectorAll('[data-tf]').forEach(el => el.addEventListener('click', handleTF));
 
-/* ── Video placeholder ── */
-const videoPlay = document.getElementById('videoPlay');
-if (videoPlay) videoPlay.addEventListener('click', () => alert('시연 영상을 준비 중입니다. 🎬'));
+/* ── Video play buttons ── */
+document.querySelectorAll('.video-play').forEach((btn, i) => {
+  btn.addEventListener('click', () => {
+    const labels = ['60초 핵심 시연', '3분 전체 흐름', '5분 발표 영상'];
+    alert(`${labels[i] || '시연 영상'}을 준비 중입니다.\n최종 버전 영상이 곧 업로드됩니다! 🎬`);
+  });
+});
+
+/* ── Slide download ── */
+document.querySelectorAll('.slide-dl-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    const href = btn.getAttribute('href');
+    if (!href || href === '#') {
+      e.preventDefault();
+      alert('발표자료를 준비 중입니다.\n심사 전날까지 업로드됩니다! 📊');
+    }
+  });
+});
 
 /* ── Beta form ── */
 const betaForm = document.getElementById('betaForm');
@@ -132,7 +157,7 @@ const betaOk   = document.getElementById('betaOk');
 if (betaForm) {
   betaForm.addEventListener('submit', e => {
     e.preventDefault();
-    const email = document.getElementById('betaEmail').value;
+    const email = betaForm.querySelector('#betaEmail').value;
     betaForm.style.display = 'none';
     if (betaOk) betaOk.style.display = 'block';
     console.log('Beta signup:', email);
@@ -158,7 +183,18 @@ document.querySelectorAll('.step-row').forEach(card => {
     const rect = card.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
     const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
-    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(12,184,122,.04) 0%, transparent 70%), var(--surface)`;
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(93,187,148,.04) 0%, transparent 70%), var(--surface)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.background = ''; });
+});
+
+/* ── Value card hover glow ── */
+document.querySelectorAll('.value-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width  * 100).toFixed(1);
+    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(74,107,156,.04) 0%, transparent 65%), var(--surface)`;
   });
   card.addEventListener('mouseleave', () => { card.style.background = ''; });
 });
