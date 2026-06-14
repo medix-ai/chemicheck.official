@@ -539,20 +539,19 @@
 
     <div class="video-cards">
       <div class="video-card fu">
-        <div class="video-box">
-          <div class="video-ph">
-            <button class="video-play" aria-label="재생">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
-            </button>
-            <div>
-              <div class="video-ph-t">60초 핵심 시연</div>
-              <div class="video-ph-s">촬영→분석→결과 전체 흐름</div>
-            </div>
-          </div>
+        <div class="video-box" style="padding:0;background:#000;aspect-ratio:9/19.5;max-height:520px">
+          <video
+            src="./demo.mp4"
+            poster="./screenshots/03_scan.png"
+            controls
+            playsinline
+            preload="metadata"
+            style="width:100%;height:100%;object-fit:contain;display:block"
+          ></video>
         </div>
         <div class="video-card-body">
-          <div class="video-card-title">60초 핵심 시연</div>
-          <div class="video-card-desc">마트 제품 촬영부터 안전 판정 결과까지, 60초 요약</div>
+          <div class="video-card-title">앱 작동 시연 영상</div>
+          <div class="video-card-desc">촬영→성분 분석→가족 맞춤 위험도→회수 이력 조회까지 전체 흐름</div>
         </div>
       </div>
 
